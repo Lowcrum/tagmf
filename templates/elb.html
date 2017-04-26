@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}{{ elb.LoadBalancerName }}{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<h2>ELB: {{ elb.LoadBalancerName }}</h2>
+<ul class="list-group">
+ <li class="list-group-item">DNSName: {{ elb.DNSName }}</li>
+ <li class="list-group-item">az: {{ elb.AvailabilityZones }}</li>
+ <li class="list-group-item">CreatedTime: {{ elb.CreatedTime }}</li>
+ <li class="list-group-item">CanonicalHostedZoneNameID: {{ elb.CanonicalHostedZoneNameID }}</li>
+ <li class="list-group-item">Instances:
+   {% for i in elb.Instances%}
+     <a href="{{ url_for('instance_page', instance_id=i.InstanceId) }}">{{ i.InstanceId }} </a><a href="https://console.aws.amazon.com/ec2/v2/home?region={{ elb.AvailabilityZones[0][0:-1] }}#Instances:instanceId={{ i.InstanceId }};sort=desc:Name"><span style="color:Orange;font-size:120%;" class="glyphicon glyphicon-cloud"></span></a>
+   {% endfor %}
+ </li>
+</ul>
+
+{% endblock %}

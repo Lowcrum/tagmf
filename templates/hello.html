@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Hello{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  {% if name %}
+    <h1>Hello {{ name }}!</h1>
+  {% else %}
+    <h1>Hello World!</h1>
+  {% endif %}
+{% endblock %}
+
+
+<tr>
+  <td><a href="https://{{ elb[0]['DNSName'] }}">{{ elb[0]['Name'] }}</a></td>
+  <td>
+  {% for i in elb[1] %}
+      {{ i }},
+  {% endfor %}
+  </td>
+</tr>

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Show{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<p>
+  <table  class="table table-bordered table-striped">
+  <tr><th>ELB</th><th>Instances</th><th>Availability Zones</th>
+  {% for elb in elbs %}
+      <tr>
+        <td><a href="{{ url_for('elb_page', elb_name=elb[0].Name) }}">{{ elb[0].Name }} </a></td>
+        <td>
+          {% for instance in elb[0].instances %}
+              <a href="{{ url_for('instance_page', instance_id=instance) }}">{{ instance }} </a><a href="https://console.aws.amazon.com/ec2/v2/home?region={{ elb[0].Az[0][0:-1] }}#Instances:instanceId={{ instance }};sort=desc:Name"><span style="color:Orange;font-size:120%;" class="glyphicon glyphicon-cloud"></span></a>
+          {% endfor %}
+        </td>
+        <td>{{ elb[0].Az[0] }}</td>
+      </tr>
+  {% endfor %}
+</table></p>
+{% endblock %}
