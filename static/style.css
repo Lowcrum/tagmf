@@ -1,3 +1,21 @@
 body {
     background-image: url("http://wallpapercave.com/wp/UoQbFHi.jpg");
 }
+
+.table-condensed{
+  font-size:12px !important;
+}
+
+/*
+tr{
+  height:20px;
+}
+*/
+
+td th{
+  padding:0 !important;
+}
+
+.table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td{
+    padding: 1px;
+}
