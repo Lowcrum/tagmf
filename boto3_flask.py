@@ -64,10 +64,6 @@ def elbs_page():
 def child():
     return render_template('child.html')
 
-@app.route("/env")
-def env_page():
-    return render_template('env.html')
-
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello(name=None):
