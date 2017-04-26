@@ -2,7 +2,7 @@ import boto3
 from flask import Flask
 from flask import render_template
 
-boto3.setup_default_session(profile_name='home')
+boto3.setup_default_session(profile_name='hgprod')
 ec2 = boto3.resource('ec2')
 elb_client = boto3.client('elb')
 
