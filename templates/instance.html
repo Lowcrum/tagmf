@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}{{ instance.id }}{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<h2>Instance: {{ instance.id }}</h2>
+<ul class="list-group">
+ {% for tag in instance.tags %}
+     {% if tag.Key == "Name" %}
+       <li class="list-group-item">Name: {{ tag.Value }}</li>
+     {% endif %}
+ {% endfor %}
+ <li class="list-group-item">id: <a href="https://console.aws.amazon.com/ec2/v2/home?region={{ instance.placement.AvailabilityZone[0:-1] }}#Instances:instanceId={{ instance.id }};sort=desc:Name">{{ instance.id }}<span style="color:Orange;font-size:120%;" class="glyphicon glyphicon-cloud"></span></a></li>
+ <li class="list-group-item">az: {{ instance.placement.AvailabilityZone }}</li>
+ <li class="list-group-item">type: {{ instance.instance_type }}</li>
+ <li class="list-group-item">key_name: {{ instance.key_name }}</li>
+ <li class="list-group-item">launch_time: {{ instance.launch_time }}</li>
+ <li class="list-group-item">platform: {{ instance.platform }}</li>
+ <li class="list-group-item">state: {{ instance.state.Name }}</li>
+ <li class="list-group-item">tags:
+   <ul>
+   {% for tag in instance.tags %}
+      <li>{{ tag.Key }}: {{ tag.Value }}</li>
+   {% endfor %}
+   </ul>
+ </li>
+</ul>
+{% endblock %}

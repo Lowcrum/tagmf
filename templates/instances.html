@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Show{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<p><table  class="table table-bordered table-striped">
+  <tr><th>ID</th><th>State</th><th>AZ</th><th>Name</th>
+  {% for i in instances %}
+      <tr>
+        <td><a href="{{ url_for('instance_page', instance_id=i.id) }}">{{ i.id }} </a><a href="https://console.aws.amazon.com/ec2/v2/home?region={{ i.placement.AvailabilityZone[0:-1] }}#Instances:instanceId={{ i.id }};sort=desc:Name"><span style="color:Orange;font-size:120%;" class="glyphicon glyphicon-cloud"></span></a></td>
+        <td>{{ i.instance_type }}</td>
+        <td>{{ i.placement.AvailabilityZone }}</td>
+        {% for tag in i.tags %}
+            {% if tag.Key == 'Name' %}
+                <td>{{ tag.Value }}</td>
+            {% endif %}
+        {% endfor %}
+      </tr>
+  {% endfor %}
+</table></p>
+{% endblock %}
